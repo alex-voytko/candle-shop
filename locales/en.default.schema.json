@@ -135,6 +135,12 @@
         },
         "shadow": {
           "label": "Shadow"
+        },
+        "accent_color": {
+          "label": "Accent"
+        },
+        "accent_color_2": {
+          "label": "Accent-2"
         }
       }
     },

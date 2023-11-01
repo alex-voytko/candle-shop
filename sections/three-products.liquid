@@ -1,0 +1,184 @@
+{{ 'swiper.css' | asset_url | stylesheet_tag }}
+
+<section class="section section-{{ section.id }} {{ section.class }}">
+
+    <h2 class="section-title title-{{ section.id }}">{{ section.settings.title }}</h2>
+
+    <div class="three-product-slider">
+        <div class="swiper-scrollbar"></div>
+        <ul class="three-product-list swiper-wrapper">
+            {% for block in section.blocks %}
+                {% render 'product-card', block: block.settings.product %}
+            {% endfor %}
+        </ul>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+</section>
+
+<script type="module">
+    const swiper = new Swiper('.three-product-slider', {
+        loop: false,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: false,
+        },
+        autoHeight: false,
+        slidesPerView: "auto",
+        spaceBetween: 15,
+        centeredSlides: true,
+        breakpoints: {
+            768: {
+                spaceBetween: 30,
+                freeMode: true,
+                pagination: {
+                    enabled: false,
+                },
+                slidesPerView: 'auto',
+                centeredSlides: false,
+                scrollbar: {
+                    el: '.swiper-scrollbar',
+                    draggable: true,
+                }
+            }
+        }
+    })
+</script>
+
+<style>
+    .three-products-section {
+        background-color: #F4F2F0;
+        padding: 53px 50px 57px 50px;
+        overflow: hidden;
+    }
+    .section-title.title-{{ section.id }} {
+        font-family: 'Lobster', sans-serif;
+        color: #424242;
+        font-size: 48px;
+        margin: 0 0 50px 0;
+        text-align: center;
+    }
+    .product-card.swiper-slide {
+        width: 427px !important;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+    }
+    .product-card .image-flex-wrapper {
+        position: relative;
+    }
+    .product-card .product-card-image {
+        width: 100%;
+        max-height: 373px;
+        border-radius: 5px;
+        transition: opacity 0.3s ease-in;
+    }
+    .product-card .product-card-image.second-for-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+    .product-card img:hover.product-card-image {
+        opacity: 0;
+    }
+    .product-card img:hover.product-card-image.second-for-hover {
+        opacity: 1;
+    }
+    .product-card .product-title {
+        font-family: 'Lobster', sans-serif;
+        color: #424242;
+        font-size: 26px;
+        margin: 20px 0 15px 0;
+        text-align: center;
+        line-height: 1;
+    }
+    .product-card .product-description {
+        color: #424242;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+    }
+    .product-card .product-btn-link {
+        display: block;
+        background-color: #FCDDE7;
+        border-radius: 50px;
+        padding: 15px 50px;
+        font-family: 'Lobster', sans-serif;
+        font-size: 16px;
+        color: #424242;
+        text-decoration: none;
+    }
+    .product-card .product-btn-link::after {
+        content: '→';
+        position: absolute;
+        right: 66px;
+    }
+    .three-product-list {
+        padding: 0;
+    }
+    @media screen and (max-width: 767px) {
+        .section-title.title-{{ section.id }} {
+            font-size: 32px;
+            margin: 0 0 40px 0;
+        }
+        .three-products-section {
+            padding: 25px 15px 57px 15px;
+        }
+        .product-card.swiper-slide {
+            width: 315px !important;
+        }
+        .product-card .product-title {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+        .product-card .product-description {
+            font-size: 14px;
+        }
+        .product-card img:hover.product-card-image {
+            opacity: 1;
+        }
+        .product-card .product-card-image.second-for-hover {
+            display: none;
+        }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Three products",
+  "class": "three-products-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Explore more of our products"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Three products",
+      "category": "Section"
+    }
+  ]
+}
+
+{% endschema %}

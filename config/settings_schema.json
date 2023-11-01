@@ -81,6 +81,18 @@
             "id": "shadow",
             "label": "t:settings_schema.colors.settings.shadow.label",
             "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "accent_color",
+            "label": "t:settings_schema.colors.settings.accent_color.label",
+            "default": "#FCDDE7"
+          },
+          {
+            "type": "color",
+            "id": "accent_color_2",
+            "label": "t:settings_schema.colors.settings.accent_color_2.label",
+            "default": "#F17DA2"
           }
         ],
         "role": {

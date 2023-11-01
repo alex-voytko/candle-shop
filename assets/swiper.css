@@ -1,0 +1,40 @@
+.swiper-horizontal {
+    position: relative;
+}
+.swiper-pagination > .swiper-pagination-bullet {
+    background-color: white;
+    opacity: 1;
+}
+.swiper-pagination > .swiper-pagination-bullet-active {
+    background: #F17DA2;
+}
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction  {
+    bottom: -40px;
+}
+.swiper-scrollbar {
+    display: none;
+}
+.swiper-wrapper {
+    height: fit-content;
+}
+@media screen and (min-width: 768px) {
+    .swiper-horizontal > .swiper-scrollbar,
+    .swiper-scrollbar.swiper-scrollbar-horizontal {
+        display: block;
+        bottom: -25px;
+    }
+    .swiper-scrollbar .swiper-scrollbar-drag {
+        display: block;
+        background-color: #F17DA2;
+    }
+    .swiper-scrollbar-lock + .swiper-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    .swiper-horizontal > .swiper-pagination {
+        display: none;
+    }
+}

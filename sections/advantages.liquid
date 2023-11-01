@@ -1,0 +1,172 @@
+<section class="section section-{{ section.id }} {{ section.class }}">
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+    <ul class="advantage-section-wrapper-list">
+        {% for block in section.blocks %}
+          <li>
+            <div class="svg-container">{{ block.settings.svg }}</div>
+            <h3 class="advantage-section__block-title">{{ block.settings.block_title }}</h3>
+            <p class="advantage-section__block-description">{{ block.settings.block_description }}</p>
+          </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<style>
+    .advantage-section {
+        padding: 50px 50px 150px 50px;
+        background-color: #F4F2F0;
+    }
+    .advantage-section .section-title {
+      font-family: 'Lobster', sans-serif;
+      color: #424242;
+      font-size: 48px;
+      margin: 0 0 50px 0;
+      text-align: center;
+    }
+    .advantage-section-wrapper-list {
+      position: relative;
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      row-gap: 124px;
+    }
+    .advantage-section-wrapper-list::after {
+        content: '';
+        background-image: url({{ 'dashed-border.png' | asset_url }});
+        position: absolute;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100vw;
+        height: 86px;
+        left: -50px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .advantage-section-wrapper-list .advantage-section__block-title {
+      font-family: 'Lobster', sans-serif;
+      color: #424242;
+      font-size: 20px;
+      text-align: center;
+      text-transform: capitalize;
+    }
+    .advantage-section-wrapper-list .advantage-section__block-description {
+      color: #424242;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 0 15px;
+    }
+    .advantage-section-wrapper-list svg {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .advantage-section-wrapper-list li:nth-child(1) {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    .advantage-section-wrapper-list li:nth-child(2) {
+        grid-row: 1;
+        grid-column: 3;
+    }
+    .advantage-section-wrapper-list li:nth-child(3) {
+        grid-row: 1;
+        grid-column: 5;
+    }
+    .advantage-section-wrapper-list li:nth-child(4) {
+        grid-row: 2;
+        grid-column: 2;
+    }
+    .advantage-section-wrapper-list li:nth-child(5) {
+        grid-row: 2;
+        grid-column: 4;
+    }
+    @media screen and (max-width: 1023px) {
+      .advantage-section-wrapper-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+          row-gap: 40px;
+      }
+      .advantage-section-wrapper-list::after {
+          display: none;
+      }
+      .advantage-section-wrapper-list li {
+        width: 33%;
+      }
+      .advantage-section-wrapper-list .advantage-section__block-description {
+      }
+    }
+    @media screen and (max-width: 767px) {
+      .advantage-section {
+        padding: 50px 15px;
+      }
+      .advantage-section .section-title {
+        font-size: 32px;
+        margin: 0 0 40px 0;
+      }
+      .advantage-section-wrapper-list {
+        row-gap: 20px;
+      }
+      .advantage-section-wrapper-list li {
+        width: 50%;
+      }
+      .advantage-section-wrapper-list .advantage-section__block-description {
+        font-size: 12px;
+        padding: 0 8px;
+      }
+      .advantage-section-wrapper-list .advantage-section__block-title {
+        font-size: 18px;
+      }
+    }
+</style>
+
+{% schema %}
+{
+  "name": "Advantages",
+  "class": "advantage-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why choose us"
+    }
+  ],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "html",
+          "id": "svg",
+          "label": "Paste SVG code below"
+        },
+        {
+          "type": "text",
+          "id": "block_title",
+          "label": "Block Title",
+          "default": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "block_description",
+          "label": "Block Description",
+          "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advantages",
+      "category": "Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,18 @@
+<script>console.log({{ block.images | json }})</script>
+
+<li class="product-card swiper-slide">
+    <div class="image-flex-wrapper">
+        {% for img in block.images %}
+            <img
+                    src="{{ img.src | img_url: 'large' }}"
+                    loading="lazy"
+                    alt="{{ block.title | escape }}"
+                    class="product-card-image{% if forloop.index == 2 %} second-for-hover{% endif %}"
+            >
+            {% if forloop.index == 2 %}{% break %}{% endif %}
+        {% endfor %}
+    </div>
+    <p class="product-title">{{ block.title }}</p>
+    <p class="product-description">{{ block.description }}</p>
+    <a href="{{ block.url }}" class="product-btn-link">Read more</a>
+</li>
