@@ -24,7 +24,9 @@
     .swiper-horizontal > .swiper-scrollbar,
     .swiper-scrollbar.swiper-scrollbar-horizontal {
         display: block;
-        bottom: -25px;
+        bottom: -40px;
+        height: 8px;
+        cursor: grab;
     }
     .swiper-scrollbar .swiper-scrollbar-drag {
         display: block;
